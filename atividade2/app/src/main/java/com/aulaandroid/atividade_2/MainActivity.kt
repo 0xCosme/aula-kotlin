@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -40,7 +41,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             Atividade2Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    BasicComponentScrem(modifier = Modifier.padding(innerPadding))
+                   // BasicComponentScrem(modifier = Modifier.padding(innerPadding))
+                    TelaGameOuver(modifier = Modifier.padding(innerPadding))
+
                 }
             }
         }
@@ -49,181 +52,209 @@ class MainActivity : ComponentActivity() {
 
 
 
-    @Composable
-    fun BasicComponentScrem( modifier: Modifier = Modifier) {
+@Composable
+fun TelaGameOuver(modifier: Modifier = Modifier) {
 
-        Column(
-            modifier= modifier
-                .fillMaxSize()
-                .background(Color(0,0,0))
-            ,
-            verticalArrangement = Arrangement.spacedBy(30.dp)
-
+        Box(modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black),
+            contentAlignment = Alignment.Center
 
         ) {
 
-            //LINHA REPSOPNSAVEL PELO SCORE
+            Box(){
+                Row() {
+                    imgInimigo(
+                        modifier = Modifier.size(100.dp),
+                    )
+                    imgInimigo(
+                        modifier = Modifier.size(100.dp),
+                    )
+                    imgInimigo(
+                        modifier = Modifier.size(100.dp),
+                    )
+                    imgInimigo(
+                        modifier = Modifier.size(100.dp),
+                    )
+                }
+
+            }
+
+            Text(
+                text = "GAME OVER",
+                fontSize = 60.sp,
+                fontWeight = FontWeight.Normal,
+                color = Color.White,
+                //fontFamily = FontFamily,
+
+                //modifier = Modifier.align(Alignment.Center)
+            )
+        }
+
+}
+
+
+@Composable
+fun BasicComponentScrem( modifier: Modifier = Modifier) {
+
+    Column(
+        modifier= modifier
+            .fillMaxSize()
+            .background(Color(0, 0, 0))
+        ,
+        verticalArrangement = Arrangement.spacedBy(30.dp)
+
+
+    ) {
+
+        //LINHA REPSOPNSAVEL PELO SCORE
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                //.background(Color.Green)
+            ,
+            horizontalArrangement = Arrangement.SpaceBetween,
+
+        ) {
+            Text(
+                text = "SCORE: 0000 ",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White,
+                fontFamily = FontFamily.Serif,
+                modifier = Modifier
+                    //.background(Color.Magenta)
+                ,
+                textAlign = TextAlign.Start,
+                letterSpacing = 4.sp
+                //modifier = modifier.fillMaxWidth()
+                // .background(Color(0xFFE8AF55))
+            )
+
+
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    //.background(Color.Green)
-                ,
-                horizontalArrangement = Arrangement.SpaceBetween,
+                //.background(Color.Yellow)
+                        ,
+                //alinha horizontalmente os itens dentro da roww
+                verticalAlignment = Alignment.CenterVertically
 
-            ) {
+
+                ) {
                 Text(
-                    text = "SCORE: 0000 ",
+                    text = "LIVES : ",
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
                     fontFamily = FontFamily.Serif,
                     modifier = Modifier
-                        //.background(Color.Magenta)
+                       //.background(Color.Red)
                     ,
-                    textAlign = TextAlign.Start,
+                    // .align(Alignment.End),
+                    //.align(Alignment.CenterHorizontally),
+                    textAlign = TextAlign.End,
                     letterSpacing = 4.sp
                     //modifier = modifier.fillMaxWidth()
                     // .background(Color(0xFFE8AF55))
                 )
 
-
-                Row(
-                    modifier = Modifier
-                    //.background(Color.Yellow)
-                            ,
-                    //alinha horizontalmente os itens dentro da roww
-                    verticalAlignment = Alignment.CenterVertically
-
-
-                    ) {
-                    Text(
-                        text = "LIVES : ",
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                        fontFamily = FontFamily.Serif,
-                        modifier = Modifier
-                           //.background(Color.Red)
-                        ,
-                        // .align(Alignment.End),
-                        //.align(Alignment.CenterHorizontally),
-                        textAlign = TextAlign.End,
-                        letterSpacing = 4.sp
-                        //modifier = modifier.fillMaxWidth()
-                        // .background(Color(0xFFE8AF55))
-                    )
-
-                    imgCoracao(
-                        modifier = Modifier.size(15.dp),
-                        color = Color.Red,
-                    )
-                    imgCoracao(
-                        modifier = Modifier.size(15.dp),
-                        color = Color.Red,
-                    )
-                    imgCoracao(
-                        modifier = Modifier.size(15.dp),
-                        color = Color.Red,
-                    )
-
-                }
-
-
-
-            }
-            //LINHA COM OS INIMIGOS
-            Row(
-                modifier = Modifier
-                    //.background(Color.Blue)
-                    .fillMaxWidth(),
-
-
-            ) {
-
-                imgInimigo(
-                    modifier = Modifier.size(80.dp)
-                    //color = Color.Green,
+                imgCoracao(
+                    modifier = Modifier.size(15.dp),
+                    color = Color.Red,
                 )
-                imgInimigo(
-                    modifier = Modifier.size(80.dp)
-                    //color = Color.Green,
+                imgCoracao(
+                    modifier = Modifier.size(15.dp),
+                    color = Color.Red,
                 )
-                imgInimigo(
-                    modifier = Modifier.size(80.dp)
-                    //color = Color.Green,
+                imgCoracao(
+                    modifier = Modifier.size(15.dp),
+                    color = Color.Red,
                 )
-                imgInimigo(
-                        modifier = Modifier.size(80.dp)
-                        //color = Color.Green,
-                        )
-                imgInimigo(
-                    modifier = Modifier.size(80.dp)
-                    //color = Color.Green,
-                )
-
-
 
             }
 
 
 
-            //REPONSAVEL PELA PARTE DE BAIXO
-            Column(
-                modifier =  modifier
+        }
+        //LINHA COM OS INIMIGOS
+        Row(
+            modifier = Modifier
+                //.background(Color.Blue)
+                .fillMaxWidth(),
 
-                    .fillMaxWidth()
-                    .weight(1f)
 
-                    //.clip(RoundedCornerShape(40.dp))
-                    //.background(Color.Yellow)
-                    //.weight(0.1f)
-                    //.fillMaxWidth()
-                    //.align(Alignment.End)
-                ,
+        ) {
 
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Bottom
-
-                //verticalArrangement = Arrangement.SpaceBetween
-            ) {
-
-                imgPlayer(
+            imgInimigo(
+                modifier = Modifier.size(80.dp)
+                //color = Color.Green,
+            )
+            imgInimigo(
+                modifier = Modifier.size(80.dp)
+                //color = Color.Green,
+            )
+            imgInimigo(
+                modifier = Modifier.size(80.dp)
+                //color = Color.Green,
+            )
+            imgInimigo(
                     modifier = Modifier.size(80.dp)
                     //color = Color.Green,
-                )
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(Color.DarkGray)
-                        .padding(16.dp),
-                    horizontalArrangement = Arrangement.Center
-                ) {
-                    Text(
-                        text = "PRESSSTART",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
                     )
-                }
-            }
-
-
-
-
-
-
-
-
-
-
-
+            imgInimigo(
+                modifier = Modifier.size(80.dp)
+                //color = Color.Green,
+            )
 
 
 
         }
 
+
+        //REPONSAVEL PELA PARTE DE BAIXO
+        Column(
+            modifier =  modifier
+
+                .fillMaxWidth()
+                .weight(1f)
+
+                //.clip(RoundedCornerShape(40.dp))
+                //.background(Color.Yellow)
+                //.weight(0.1f)
+                //.fillMaxWidth()
+                //.align(Alignment.End)
+            ,
+
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Bottom
+
+            //verticalArrangement = Arrangement.SpaceBetween
+        ) {
+
+            imgPlayer(
+                modifier = Modifier.size(80.dp)
+                //color = Color.Green,
+            )
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.DarkGray)
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "PRESS START",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+            }
+        }
+
     }
+
+}
 
 
 
