@@ -41,8 +41,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             Atividade2Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                   // BasicComponentScrem(modifier = Modifier.padding(innerPadding))
-                    TelaGameOuver(modifier = Modifier.padding(innerPadding))
+                    BasicComponentScrem(modifier = Modifier.padding(innerPadding))
+                    //TelaGameOuver(modifier = Modifier.padding(innerPadding))
 
                 }
             }
@@ -129,6 +129,9 @@ fun BasicComponentScrem( modifier: Modifier = Modifier) {
                 letterSpacing = 4.sp
                 //modifier = modifier.fillMaxWidth()
                 // .background(Color(0xFFE8AF55))
+
+
+                //arrangemente alinha os item do container row ou colum, e arranjo e alinhamento move a box toda seja colum ou row
             )
 
 
