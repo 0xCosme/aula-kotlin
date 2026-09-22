@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp" android:tint="#000000" android:viewportHeight="960" android:viewportWidth="960" android:width="24dp">
+
+
+
+
+    <!-- Lente e estrutura da Lupa (Mantendo as proporções originais do lado direito) -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M740,700Q648,700 584,636Q520,572 520,480Q520,388 584,324Q648,260 740,260Q832,260 896,324Q960,388 960,480Q960,572 896,636Q832,700 740,700ZM740,620Q798,620 839,579Q880,538 880,480Q880,422 839,381Q798,340 740,340Q682,340 641,381Q600,422 600,480Q600,538 641,579Q682,620 740,620Z"/>
+
+    <!-- Cabo da Lupa (Saindo da diagonal inferior esquerda da lente em direção ao canto do ícone) -->
+    <path
+        android:fillColor="@android:color/white"
+        android:pathData="M592,536 L216,912 Q192,936 158,936 Q124,936 100,912 Q76,888 76,854 Q76,820 100,796 L476,420 Z"/>
+</vector>
