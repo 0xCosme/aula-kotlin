@@ -66,7 +66,16 @@ fun IMCTela(modifier: Modifier = Modifier) {
     //var azul by remember { mutableStateOf(Color(239,156,213)) }
     var azul = colorResource(id = R.color.cor_app)
     var altura by remember { mutableStateOf("") }
+    var alturaMemoria by remember { mutableStateOf("") }
+
     var peso by remember { mutableStateOf("") }
+    var pesoMemoria by remember { mutableStateOf("") }
+    var CorBotao by remember { mutableStateOf(azul) }
+
+
+    var textobotao by remember { mutableStateOf("Calcular") }
+    var acaocalculo by remember { mutableStateOf(true) }
+
     var cardColor by remember { mutableStateOf(Color.White) }
 
 
@@ -74,6 +83,7 @@ fun IMCTela(modifier: Modifier = Modifier) {
     var classificacao by remember { mutableStateOf("") }
 
     var isVisible by remember { mutableStateOf(false) }
+    var botaoAtivo by remember { mutableStateOf(false) }
 
 
 
@@ -114,6 +124,11 @@ fun IMCTela(modifier: Modifier = Modifier) {
 
 
 
+        }
+        if (altura == "" || peso == ""){
+            botaoAtivo = false
+        }else{
+            botaoAtivo = true
         }
 
         //FORMULARIO
@@ -222,6 +237,7 @@ fun IMCTela(modifier: Modifier = Modifier) {
 
 
 
+
                         )
 
 
@@ -231,21 +247,45 @@ fun IMCTela(modifier: Modifier = Modifier) {
 
                             val imc =calculoIMc(peso,altura)
 
-                            imcText =  imc.toString().take(4)
 
 
-                            cardColor = corCardFunc(imc)
+                            if (acaocalculo){
+                                imcText =  imc.toString().take(4)
 
-                            classificacao =classificarImc(imc)
-                            isVisible= true
+
+                                cardColor = corCardFunc(imc)
+
+                                classificacao =classificarImc(imc)
+                                isVisible= true
+
+                                pesoMemoria = peso
+                                alturaMemoria = altura
+                                textobotao ="Limpar"
+                                acaocalculo = false
+
+                                CorBotao = Color.Red
+
+                            }else{
+                                peso =""
+                                altura =""
+                                textobotao = "Calcular"
+                                CorBotao = azul
+
+                                isVisible = false
+                            }
+
+
+
+
 
 
 
                         },
                         modifier = Modifier.fillMaxWidth(),
+                        enabled = botaoAtivo,
 
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = azul,
+                            colors = ButtonDefaults.buttonColors(
+                            containerColor = CorBotao,
                             contentColor = Color.White
                         ),
 
@@ -259,9 +299,16 @@ fun IMCTela(modifier: Modifier = Modifier) {
                     ) {
                         //adicao de icone
 
-                        Text("CALCULAR")
+                        Text("${textobotao}")
                     }
 
+
+                }
+                if (peso != pesoMemoria || altura != alturaMemoria){
+                    textobotao = "Calcular"
+                    acaocalculo = true
+                    isVisible= false
+                    CorBotao = azul
 
                 }
 
