@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 
 @Preview(
@@ -24,7 +25,7 @@ import androidx.compose.ui.unit.sp
 )
 
 @Composable
-fun PedidosTela( modifier: Modifier = Modifier) {
+fun PedidosTela( modifier: Modifier = Modifier, navController: NavController, pedidos: String) {
 
     Box(
         modifier = Modifier
@@ -33,7 +34,7 @@ fun PedidosTela( modifier: Modifier = Modifier) {
             .padding(32.dp)
     ){
         Text(
-            text = "Perfil",
+            text = "pedidos ${pedidos}",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White
@@ -47,7 +48,9 @@ fun PedidosTela( modifier: Modifier = Modifier) {
 
         ) {
             Button(
-                onClick = {},
+                onClick = {
+                    navController.popBackStack()
+                },
                 //modifier = Modifier.align(Alignment.Center),
                 colors = ButtonDefaults.buttonColors(Color.White)
             ) {

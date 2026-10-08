@@ -16,15 +16,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 
-@Preview(
-    showBackground = true,
-    showSystemUi = true
-)
+
 
 @Composable
-fun MenuTela( modifier: Modifier = Modifier) {
+fun MenuTela( modifier: Modifier = Modifier,navController: NavController) {
 
     Box(
         modifier = Modifier
@@ -47,7 +45,9 @@ fun MenuTela( modifier: Modifier = Modifier) {
 
         ) {
             Button(
-                onClick = {},
+                onClick = {
+                    navController.navigate("perfil/maria/12")
+                },
                 //modifier = Modifier.align(Alignment.Center),
                 colors = ButtonDefaults.buttonColors(Color.White)
             ) {
@@ -59,7 +59,9 @@ fun MenuTela( modifier: Modifier = Modifier) {
             }
 
             Button(
-                onClick = {},
+                onClick = {
+                    navController.navigate("pedidos?numeroPedidos=1234")
+                },
                 //modifier = Modifier.align(Alignment.Center),
                 colors = ButtonDefaults.buttonColors(Color.White)
             ) {
@@ -71,7 +73,9 @@ fun MenuTela( modifier: Modifier = Modifier) {
             }
 
             Button(
-                onClick = {},
+                onClick = {
+                    navController.navigate("Login")
+                },
                 //modifier = Modifier.align(Alignment.Center),
                 colors = ButtonDefaults.buttonColors(Color.White)
             ) {

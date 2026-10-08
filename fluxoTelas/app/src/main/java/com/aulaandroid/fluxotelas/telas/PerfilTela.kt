@@ -16,14 +16,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
-@Preview(
-    showBackground = true,
-    showSystemUi = true
-)
+
 
 @Composable
-fun PerfilTela( modifier: Modifier = Modifier) {
+fun PerfilTela( modifier: Modifier = Modifier, navController: NavController, nome : String, idade :Int) {
 
     Box(
         modifier = Modifier
@@ -32,7 +30,7 @@ fun PerfilTela( modifier: Modifier = Modifier) {
             .padding(32.dp)
     ){
         Text(
-            text = "Perfil",
+            text = "Perfil - ${nome} - ${idade}",
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             color = Color.White
@@ -46,7 +44,9 @@ fun PerfilTela( modifier: Modifier = Modifier) {
 
         ) {
             Button(
-                onClick = {},
+                onClick = {
+                    navController.navigate("menu")
+                },
                 //modifier = Modifier.align(Alignment.Center),
                 colors = ButtonDefaults.buttonColors(Color.White)
             ) {
