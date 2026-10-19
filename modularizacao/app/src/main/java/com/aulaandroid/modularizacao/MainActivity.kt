@@ -38,6 +38,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.aulaandroid.modularizacao.calculos.calcularJuros
 import com.aulaandroid.modularizacao.calculos.calcularMontante
+import com.aulaandroid.modularizacao.juros.JurosScreen
+import com.aulaandroid.modularizacao.juros.JurosScrenViewModel
 import com.aulaandroid.modularizacao.ui.theme.ModularizacaoTheme
 
 
@@ -49,7 +51,8 @@ class MainActivity : ComponentActivity() {
             ModularizacaoTheme{
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     JurosScreen(
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(innerPadding),
+                        jurosScrenViewModel = JurosScrenViewModel()
                     )
                 }
             }
@@ -60,197 +63,4 @@ class MainActivity : ComponentActivity() {
 
 
 
-
-
-@Composable
-fun JurosScreen(modifier: Modifier = Modifier) {
-    var capital by remember {
-        mutableStateOf("")
-    }
-
-    var taxa by remember {
-        mutableStateOf("")
-    }
-
-    var tempo by remember {
-        mutableStateOf("")
-    }
-
-    var juros by remember {
-        mutableDoubleStateOf(0.0)
-    }
-
-    var montante by remember {
-        mutableDoubleStateOf(0.0)
-    }
-
-
-
-    Column (
-        modifier = modifier.fillMaxSize(),
-    ) {
-        Column(modifier = Modifier.fillMaxWidth()) {
-            Column(
-                modifier = Modifier.fillMaxWidth()
-                    .height(100.dp)
-                    .background(color = Color(136, 38, 199, 255))
-                    .padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = "Calculadora Juros Simples",
-                    fontSize = 24.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-
-            Column(
-                modifier = Modifier.fillMaxWidth()
-                    .padding(horizontal = 32.dp)
-            ) {
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .offset(y = (-30).dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = Color(0xFFF9F6F6)
-                    ),
-                    elevation = CardDefaults.cardElevation(4.dp),
-                ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(24.dp)
-                        ,
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
-                        Text(
-                            text = "Dados do investimento",
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-
-                        OutlinedTextField(
-                            value = capital,
-                            onValueChange = { capital = it },
-                            modifier = Modifier.fillMaxWidth(),
-                            label = { Text(text = "Valor investimento") },
-                            placeholder = { Text(text = "Quanto deseja investir?") },
-                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)
-                        )
-
-                        OutlinedTextField(
-                            value = taxa,
-                            onValueChange = { taxa = it },
-                            modifier = Modifier.fillMaxWidth(),
-                            label = { Text(text = "Taxa de juros mensal") },
-                            placeholder = { Text(text = "Qual a taxa de juros mensal?") },
-                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)
-                        )
-
-                        OutlinedTextField(
-                            value = tempo,
-                            onValueChange = { tempo = it },
-                            modifier = Modifier.fillMaxWidth(),
-                            label = { Text(text = "Período em meses") },
-                            placeholder = { Text(text = "Qual o tempo em meses?") },
-                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)
-                        )
-
-                        Button(
-                            onClick = {
-
-                                juros = calcularJuros(
-                                    capital = capital.toDouble(),
-                                    taxa = taxa.toDouble(),
-                                    tempo = tempo.toDouble()
-                                )
-
-                                montante = calcularMontante(
-                                    capital = capital.toDouble(),
-                                    juros = juros
-                                )
-                            },
-                            modifier = Modifier.fillMaxWidth()
-                                .height(48.dp)
-                        ) {
-                            Text(
-                                text = "CALCULAR",
-                                fontWeight = FontWeight.Bold,
-                                color = Color.White,
-                                fontSize = 14.sp
-                            )
-                        }
-                    }
-                }
-
-
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = CardDefaults.cardColors(
-                        containerColor = Color(0xFF329F6B)
-                    ),
-                    elevation = CardDefaults.cardElevation(4.dp)
-                ) {
-                    Column (
-                        verticalArrangement = Arrangement.spacedBy(16.dp),
-                        modifier = Modifier.fillMaxWidth()
-                            .padding(24.dp)
-                    ) {
-                        Text(
-                            text = "Resultado",
-                            fontWeight = FontWeight.Bold,
-                            color = Color.White,
-                            fontSize = 28.sp,
-                            textAlign = TextAlign.Start
-                        )
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(16.dp)
-                        ) {
-                            Text(
-                                text = "Juros",
-                                fontWeight = FontWeight.Bold,
-                                color = Color.White,
-                                fontSize = 24.sp,
-                                textAlign = TextAlign.Start
-                            )
-
-                            Text(
-                                text = "$juros",
-                                fontWeight = FontWeight.Bold,
-                                color = Color.White,
-                                fontSize = 24.sp
-                            )
-                        }
-
-
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(16.dp)
-                        ) {
-                            Text(
-                                text = "Montante",
-                                fontWeight = FontWeight.Bold,
-                                color = Color.White,
-                                fontSize = 24.sp,
-                                textAlign = TextAlign.Start
-                            )
-
-                            Text(
-                                text = "$montante",
-                                fontWeight = FontWeight.Bold,
-                                color = Color.White,
-                                fontSize = 24.sp
-                            )
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
 
